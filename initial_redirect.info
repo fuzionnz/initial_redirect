@@ -1,0 +1,6 @@
+name = Initial Redirect
+description = Send first-time visitors away.
+package = Other
+core = 7.x
+configure = admin/config/administration/initial_redirect
+scripts[] = js/initial_redirect.js

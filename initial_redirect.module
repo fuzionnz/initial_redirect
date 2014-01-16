@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Redirect first-time visitors to another site.
+ */
+
+define('INITIAL_REDIRECT_JSTORAGE_URI', 'https://raw.github.com/andris9/jStorage/master/jstorage.js');
+define('INITIAL_REDIRECT_JSON2_URI', '//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js');
+
+/**
+ * Implements hook_menu().
+ */
+function initial_redirect_menu() {
+  $items['admin/config/user-interface/initial_redirect'] = array(
+    'title' => 'Initial Redirect',
+    'description' => 'Configure redirects for first time visitors.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('initial_redirect_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'initial_redirect.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements template_preprocess_html().
+ */
+function initial_redirect_html_head_alter(&$head_elements) {
+  // Reference external libraries required by jStorage.
+  drupal_add_js(variable_get('initial_redirect_json2_uri', INITIAL_REDIRECT_JSON2_URI), 'external');
+  drupal_add_js(variable_get('initial_redirect_jstorage_uri', INITIAL_REDIRECT_JSTORAGE_URI), 'external');
+  // Add settings for JS.
+  $settings = array(
+    'initialRedirect' => array(
+      'url' => variable_get('initial_redirect_url', FALSE),
+      'ts' => variable_get('initial_redirect_ts', 0),
+    ),
+  );
+  drupal_add_js($settings, 'setting');
+}
