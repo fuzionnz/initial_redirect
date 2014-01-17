@@ -4,7 +4,7 @@
       // Require that:
       // 1. Settings are loaded.
       // 2. URL is not blank.
-      // 3. jStorage is ready / working.
+      // 3. jquery.cookie is ready / working.
       // 4. We haven't redirected here before.
       if (Drupal.settings.initialRedirect &&
           Drupal.settings.initialRedirect.url &&
