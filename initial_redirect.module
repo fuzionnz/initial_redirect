@@ -9,7 +9,7 @@
  * Implements hook_menu().
  */
 function initial_redirect_menu() {
-  $items['admin/config/user-interface/initial_redirect'] = array(
+  $items['admin/config/user-interface/initial-redirect'] = array(
     'title' => 'Initial Redirect',
     'description' => 'Configure redirects for first time visitors.',
     'page callback' => 'drupal_get_form',
