@@ -15,20 +15,12 @@ function initial_redirect_settings() {
     '#title' => t('Reset "initial visit" for previous visitors.'),
     '#default_value' => FALSE,
   );
-/*
-  $form['advanced'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Advanced settings'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  );
-  $form['advanced']['initial_redirect_ts'] = array(
-    '#type' => 'textfield',
+  $form['initial_redirect_ts'] = array(
+    '#type' => 'hidden',
     '#title' => t('Timestamp'),
     '#default_value' => variable_get('initial_redirect_ts', time()),
     '#description' => t('Incrementing this value will cause previously redirected visitors to be affected on their next visit. This happens automatically if you check the <em>Reset "initial visit" for previous visitors</em> box above.'),
   );
-*/
   return system_settings_form($form);
 }
 

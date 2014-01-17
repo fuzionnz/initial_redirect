@@ -14,7 +14,10 @@
         // went, in case we ever need to check / compare later.
         $.cookie('initialRedirectTimestamp', Drupal.settings.initialRedirect.ts);
         $.cookie('initialRedirectURL', Drupal.settings.initialRedirect.url);
-        window.location.href = Drupal.settings.initialRedirect.url;
+        // Redirect, appending redirectFrom URL param.
+        sep = Drupal.settings.initialRedirect.url.indexOf('?') > 0 ? '&' : '?';
+        window.location.href = Drupal.settings.initialRedirect.url + sep +
+          'redirectFrom=' + window.location.href;
       }
     }
   };
