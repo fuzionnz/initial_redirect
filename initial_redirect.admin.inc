@@ -37,6 +37,6 @@ function initial_redirect_settings() {
 function initial_redirect_settings_validate($form, &$form_state) {
   if ($form_state['values']['initial_redirect_reset']) {
     $form_state['values']['initial_redirect_ts'] = time();
-    cache_clear_all();
   }
+  cache_clear_all();
 }
