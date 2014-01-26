@@ -8,11 +8,18 @@ function initial_redirect_settings() {
     '#type' => 'textfield',
     '#title' => t('Redirect URL'),
     '#default_value' => variable_get('initial_redirect_url', NULL),
-    '#description' => t('URL to redirect initial visitors to.'),
+    '#description' => t('URL to redirect initial visitors to. No redirects will occur if this is left blank or the "Enable" box below is unchecked.'),
+  );
+  $form['initial_redirect_active'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable initial redirect.'),
+    '#description' => t('Redirect visitors to the URL above on first visit to the site. Uncheck to disable.'),
+    '#default_value' => variable_get('initial_redirect_active', FALSE),
   );
   $form['initial_redirect_reset'] = array(
     '#type' => 'checkbox',
     '#title' => t('Reset "initial visit" for previous visitors.'),
+    '#description' => t('Reset the timestamp which prevents prior visitors from being redirected again.'),
     '#default_value' => FALSE,
   );
   $form['initial_redirect_ts'] = array(

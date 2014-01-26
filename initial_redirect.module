@@ -24,14 +24,16 @@ function initial_redirect_menu() {
  * Implements template_preprocess_html().
  */
 function initial_redirect_html_head_alter(&$head_elements) {
-  // Reference external libraries required by jStorage.
-  drupal_add_library('system', 'jquery.cookie');
-  // Add settings for JS.
-  $settings = array(
-    'initialRedirect' => array(
-      'url' => variable_get('initial_redirect_url', FALSE),
-      'ts' => variable_get('initial_redirect_ts', 0),
-    ),
-  );
-  drupal_add_js($settings, 'setting');
+  if (variable_get('initial_redirect_active', FALSE) && variable_get('initial_redirect_url', FALSE)) {
+    // Reference external libraries required by jStorage.
+    drupal_add_library('system', 'jquery.cookie');
+    // Add settings for JS.
+    $settings = array(
+      'initialRedirect' => array(
+        'url' => variable_get('initial_redirect_url', FALSE),
+        'ts' => variable_get('initial_redirect_ts', 0),
+      ),
+    );
+    drupal_add_js($settings, 'setting');
+  }
 }
